@@ -33,26 +33,31 @@ exports.findById = function(req, res) {
 
 exports.create = function(req, res) {
     res.setHeader('Content-Type', 'application/json');
-    var note = new Note(req.body);
-    note.save(function(err, resUser) {
+
+    var note = new Note({
+        body: req.body.body
+    });
+    note.save(function(err, resNote) {
         if (err) {
             res.send(500, {
                 error: err
             });
             return false;
         }
-        res.send(resUser);
+        res.send(resNote);
     });
 };
 
 exports.update = function(req, res) {
     res.setHeader('Content-Type', 'application/json');
+    console.dir(req.body);
+    var note = req.body;
     var id = req.params.id;
-    delete req.body._id;
+    delete note._id;
 
     Note.update({
         '_id': id
-    }, req.body, function(err) {
+    }, note, function(err) {
         if (err) {
             res.send(500, {
                 error: err
@@ -60,9 +65,9 @@ exports.update = function(req, res) {
             return false;
         }
         res.send({
-            "message": "success!"
+            msg: "success!"
         });
-    })
+    });
 };
 
 exports.destroy = function(req, res) {

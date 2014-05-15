@@ -15,14 +15,14 @@ var app = express();
 
 app.use(bodyparser());
 
+app.set('port', process.env.PORT || 3000);
+
 //all our methods we can perform with body-parser
 app.get('/api/v0_0_1/notes', noteRoutes.collection);
 app.get('/api/v0_0_1/note/:id', noteRoutes.findById);
-app.post('api/v0_0_1/notes', noteRoutes.create);
-app.put('api/v0_0_1/note/:id', noteRoutes.update);
-app.delete('api/v0_0_1/note/:id', noteRoutes.destroy);
-
-app.set('port', process.env.PORT || 3000);
+app.post('/api/v0_0_1/notes', noteRoutes.create);
+app.put('/api/v0_0_1/note/:id', noteRoutes.update);
+app.delete('/api/v0_0_1/note/:id', noteRoutes.destroy);
 
 var server = http.createServer(app);
 server.listen(app.get('port'), function() {
