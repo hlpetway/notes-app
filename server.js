@@ -22,7 +22,7 @@ app.put('/api/v0_0_1/notes/:id', noteRoutes.update);
 app.delete('/api/v0_0_1/notes/:id', noteRoutes.destroy);
 //connect to mongo server using mongoose
 mongoose.connect(mongoURI);
-var mongo
+var mongo;
 
 //get the json & html into the DOM
 app.get('/', noteRoutes.home);
