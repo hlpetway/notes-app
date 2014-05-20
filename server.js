@@ -10,9 +10,9 @@ var noteRoutes = require('./routes/noteRoutes');
 var mongoURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/notes-development';
 
 var app = express();
+app.set('port', process.env.PORT || 3000);
 app.use(bodyparser.json());
 app.use(express.static(__dirname + '/dist/'));
-app.set('port', process.env.PORT || 3000);
 
 //all our methods we can perform with body-parser
 app.get('/api/v0_0_1/notes', noteRoutes.collection);
@@ -22,7 +22,7 @@ app.put('/api/v0_0_1/notes/:id', noteRoutes.update);
 app.delete('/api/v0_0_1/notes/:id', noteRoutes.destroy);
 //connect to mongo server using mongoose
 mongoose.connect(mongoURI);
-var mongo
+var mongo;
 
 //get the json & html into the DOM
 app.get('/', noteRoutes.home);
