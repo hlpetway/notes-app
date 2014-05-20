@@ -4,7 +4,7 @@ $ = require('jquery');
 var data = '';
 
 $.ajax({
-    url: 'http://localhost:3000/api/v0_0_1/notes',
+    url: '/api/v0_0_1/notes',
     data: data,
     success: function(json) {
         json.forEach(function(element) {
